@@ -1,4 +1,4 @@
-#include "../include/multiimagefilter.h"
+#include "../src/multiimagefilter.h"
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>
@@ -33,7 +33,7 @@ int main() {
 
     QJsonArray filters{filterConfig, filterConfig2};
     MultiImageFilter multiImageFilter{filterConfig6};
-    cv::Mat image{cv::imread("example.jpeg")};
+    cv::Mat image{cv::imread("1.png")};
     cv::Mat image2{};
     image.copyTo(image2);
 

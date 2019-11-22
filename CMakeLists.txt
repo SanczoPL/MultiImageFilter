@@ -3,7 +3,7 @@ project(MultiImageFilter
   VERSION 0.0.1
   DESCRIPTION "Multiple Image Filter"
   LANGUAGES C CXX)
-
+set(TARGET_NAME "MultiImageFilter")
 set(DEFAULT_BUILD_TYPE "Release")
 
 #stNDARD STUFF
@@ -20,19 +20,14 @@ set(Qt5Network_DIR  /home/gmatczak/Qt/5.12.5/gcc_64/lib/cmake/Qt5Core/)
 set(OpenCV_DIR /home/gmatczak/opencv/build/inclulde )
 set(CMAKE_PREFIX_PATH /home/gmatczak/opencv/build  /home/gmatczak/Qt/5.12.5/gcc_64/lib/cmake/Qt5Core/)
 
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(OpenCV REQUIRED)
 #include fix for OpenCV
 include_directories(
     ${OpenCV_INCLUDE_DIRS}
 )
-
-if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
-  message(STATUS "Setting build type to '${DEFAULT_BUILD_TYPE}' as none was specified.")
-  set(CMAKE_BUILD_TYPE "${DEFAULT_BUILD_TYPE}" CACHE STRING "Choose the type of build." FORCE)
-  # Set the possible values of build type for cmake-gui
-  set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "Release" "MinSizeRel" "RelWithDebInfo")
-endif()
 
 set(SRC
     src/main.cc
@@ -58,16 +53,13 @@ set(SRC
 )
 
 set(HEADERS
-    include/multiimagefilter.h
+    src/multiimagefilter.h
     ../IncludeSpdlog/spdlog.h
 )
 
-add_library(${PROJECT_NAME} SHARED
+add_executable(${TARGET_NAME}
     ${SRC}
     ${HEADERS}
 )
 
-target_link_libraries(${PROJECT_NAME}
-    Qt5::Core
-    ${OpenCV_LIBS}
-)
+target_link_libraries(${PROJECT_NAME} Qt5::Core ${OpenCV_LIBS} Threads::Threads )
