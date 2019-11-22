@@ -3,6 +3,9 @@
 
 #include <opencv2/imgproc.hpp>
 #include <QVector>
+#include <QDebug>
+#include <QJsonArray>
+#include <QJsonObject>
 
 class BaseFilter;
 class QJsonArray;
@@ -15,15 +18,15 @@ class TickMeter;
 class MultiImageFilter
 {
  public:
-  MultiImageFilter(QJsonArray const &a_filtersConfiguration);
+  MultiImageFilter(QJsonObject const &m_filter);
   ~MultiImageFilter();
 
-  void configure(QJsonArray const &a_filtersConfiguration);
+  void configure(QJsonObject const &m_filter);
   void process(cv::Mat &a_image);
   double getElapsedTimeSubtractor();
 
  private:
-  QVector<BaseFilter *> m_filters{};
+  BaseFilter * m_baseFilter{};
   cv::TickMeter m_timer;
 };
 

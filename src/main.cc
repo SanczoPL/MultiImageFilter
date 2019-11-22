@@ -32,7 +32,7 @@ int main() {
                                 {"MorphElement", 0}};
 
     QJsonArray filters{filterConfig, filterConfig2};
-    MultiImageFilter multiImageFilter{filters};
+    MultiImageFilter multiImageFilter{filterConfig6};
     cv::Mat image{cv::imread("example.jpeg")};
     cv::Mat image2{};
     image.copyTo(image2);

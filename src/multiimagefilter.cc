@@ -1,62 +1,45 @@
 #include "../../MultiImageFilter/include/multiimagefilter.h"
 #include "../../IncludeSpdlog/spdlog.h"
-#include <QDebug>
-#include <QJsonArray>
-#include <QJsonObject>
+
 #include "filter.h"
 
 constexpr auto FILTER_NAME{ "Name" };
 
-MultiImageFilter::MultiImageFilter(QJsonArray const &a_filtersConfiguration)
+MultiImageFilter::MultiImageFilter(QJsonObject const &m_filter)
 {
-  configure(a_filtersConfiguration);
+  configure(m_filter);
 }
 
 MultiImageFilter::~MultiImageFilter()
 {
-  for (auto filter : m_filters)
-  {
-    delete filter;
-  }
+  delete m_baseFilter;
 }
 
-void MultiImageFilter::configure(QJsonArray const &a_filtersConfiguration)
+void MultiImageFilter::configure(QJsonObject const &m_filter)
 {
-  for (auto filter : m_filters)
-  {
-    delete filter;
-  }
+  delete m_baseFilter;
   m_timer.reset();
-  m_filters.clear();
 
-  for (auto const &FILTER_CONFIG : a_filtersConfiguration)
+  auto const NAME_STRING{ m_filter[FILTER_NAME].toString().toStdString() };
+  auto const NAME_SID{ SID(NAME_STRING.c_str()) };
+
+  switch (NAME_SID)
   {
-    auto const NAME_STRING{ FILTER_CONFIG[FILTER_NAME].toString().toStdString() };
-    auto const NAME_SID{ SID(NAME_STRING.c_str()) };
-
-    switch (NAME_SID)
-    {
-      case SID("GaussianBlur"): m_filters.push_back(new Filter::GaussianBlur{ FILTER_CONFIG.toObject() }); break;
-      case SID("Color"): m_filters.push_back(new Filter::Color{ FILTER_CONFIG.toObject() }); break;
-      case SID("Resize"): m_filters.push_back(new Filter::Resize{ FILTER_CONFIG.toObject() }); break;
-      case SID("Threshold"): m_filters.push_back(new Filter::Threshold{ FILTER_CONFIG.toObject() }); break;
-      case SID("MedianBlur"): m_filters.push_back(new Filter::MedianBlur{ FILTER_CONFIG.toObject() }); break;
-      case SID("MorphologyOperation"):
-        m_filters.push_back(new Filter::MorphologyOperation{ FILTER_CONFIG.toObject() });
-        break;
-      case SID("None"): m_filters.push_back(new Filter::None{}); break;
-      default: H_Logger->error("Unsupported filter type: {}", NAME_STRING); break;
-    }
+    case SID("GaussianBlur"): m_baseFilter = new Filter::GaussianBlur{ m_filter }; break;
+    case SID("Color"): m_baseFilter = new Filter::Color{ m_filter }; break;
+    case SID("Resize"): m_baseFilter = new Filter::Resize{ m_filter }; break;
+    case SID("Threshold"): m_baseFilter = new Filter::Threshold{ m_filter }; break;
+    case SID("MedianBlur"): m_baseFilter = new Filter::MedianBlur{ m_filter }; break;
+    case SID("MorphologyOperation"): m_baseFilter = new Filter::MorphologyOperation{ m_filter }; break;
+    case SID("None"): m_baseFilter = new Filter::None{}; break;
+    default: H_Logger->error("Unsupported filter type: {}", NAME_STRING); break;
   }
 }
 
 void MultiImageFilter::process(cv::Mat &a_image)
 {
   m_timer.start();
-  for (auto filter : m_filters)
-  {
-    filter->process(a_image);
-  }
+  m_baseFilter->process(a_image);
   m_timer.stop();
 }
 double MultiImageFilter::getElapsedTimeSubtractor()
