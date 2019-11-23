@@ -54,12 +54,12 @@ set(SRC
     src/filters/none.h
     src/filters/threshold.cc
     src/filters/threshold.h
-    ../includeSpdlog/src/includeSpdlog.cc
+    ../IncludeSpdlog/spdlog.cc
 )
 
 set(HEADERS
     include/multiimagefilter.h
-    ../includeSpdlog/include/includeSpdlog.h
+    ../IncludeSpdlog/spdlog.h
 )
 
 add_library(${PROJECT_NAME} SHARED

@@ -1,5 +1,5 @@
-#include "../../multiimagefilter/include/multiimagefilter.h"
-#include "../../includeSpdlog/include/includeSpdlog.h"
+#include "../../MultiImageFilter/include/multiimagefilter.h"
+#include "../../IncludeSpdlog/spdlog.h"
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonObject>

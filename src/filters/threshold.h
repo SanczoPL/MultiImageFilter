@@ -15,8 +15,8 @@ class Threshold : public BaseFilter
   void process(cv::Mat &a_src);
 
  private:
-  qint32 m_decisionThreshold;
-  qint32 m_thresholdTypes;
+  int m_decisionThreshold;
+  int m_thresholdTypes;
 };
 } // namespace Filter
 
