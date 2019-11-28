@@ -8,7 +8,7 @@ constexpr auto FILTER_NAME{ "Name" };
 MultiImageFilter::MultiImageFilter(QJsonObject const &m_filter)
 {
   m_baseFilter = new Filter::None{};
-  configure(m_filter);
+  //configure(m_filter);
 }
 
 MultiImageFilter::~MultiImageFilter()
