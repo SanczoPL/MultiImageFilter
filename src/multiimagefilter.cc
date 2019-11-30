@@ -8,7 +8,6 @@ constexpr auto FILTER_NAME{ "Name" };
 MultiImageFilter::MultiImageFilter(QJsonObject const &m_filter)
 {
   m_baseFilter = new Filter::None{};
-  //configure(m_filter);
 }
 
 MultiImageFilter::~MultiImageFilter()
@@ -22,8 +21,7 @@ void MultiImageFilter::configure(QJsonObject const &m_filter)
   auto const NAME_STRING{ m_filter[FILTER_NAME].toString().toStdString() };
   H_Logger->trace("filter type: {}", NAME_STRING);
   auto const NAME_SID{ SID(NAME_STRING.c_str()) };
-
-  //delete m_baseFilter;
+  delete m_baseFilter;
   m_timer.reset();
   
 
