@@ -1,5 +1,5 @@
-#include "../../MultiImageFilter/src/multiimagefilter.h"
-#include "../../IncludeSpdlog/spdlog.h"
+#include "multiimagefilter.h"
+#include "../../../IncludeSpdlog/spdlog.h"
 
 #include "filter.h"
 
