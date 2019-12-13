@@ -49,12 +49,12 @@ set(SRC
     src/filters/none.h
     src/filters/threshold.cc
     src/filters/threshold.h
-    ../IncludeSpdlog/spdlog.cc
+    ../../IncludeSpdlog/spdlog.cc
 )
 
 set(HEADERS
     src/multiimagefilter.h
-    ../IncludeSpdlog/spdlog.h
+    ../../IncludeSpdlog/spdlog.h
 )
 
 add_executable(${TARGET_NAME}
