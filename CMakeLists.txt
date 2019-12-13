@@ -49,6 +49,8 @@ set(SRC
     src/filters/none.h
     src/filters/threshold.cc
     src/filters/threshold.h
+    src/filters/bilateralfilter.cc
+    src/filters/bilateralfilter.h
     ../../IncludeSpdlog/spdlog.cc
 )
 

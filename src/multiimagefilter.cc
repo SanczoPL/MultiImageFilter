@@ -33,6 +33,7 @@ void MultiImageFilter::configure(QJsonObject const &m_filter)
     case SID("Threshold"): m_baseFilter = new Filter::Threshold{ m_filter }; break;
     case SID("MedianBlur"): m_baseFilter = new Filter::MedianBlur{ m_filter }; break;
     case SID("MorphologyOperation"): m_baseFilter = new Filter::MorphologyOperation{ m_filter }; break;
+    case SID("BilateralFilter"): m_baseFilter = new Filter::BilateralFilter{ m_filter }; break;
     case SID("None"): m_baseFilter = new Filter::None{}; break;
     default: H_Logger->error("Unsupported filter type: {}", NAME_STRING); break;
   }

@@ -8,5 +8,6 @@
 #include "filters/none.h"
 #include "filters/resize.h"
 #include "filters/threshold.h"
+#include "filters/bilateralfilter.h"
 
 #endif // FILTER_H
