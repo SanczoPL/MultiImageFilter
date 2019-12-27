@@ -43,12 +43,15 @@ int main() {
                                 {"SigmaColor", 150},
                                 {"SigmaSpace", 150},
                                 {"BorderType", 4}};
+  QJsonObject filterConfig8{{"Name", "Blur"},
+                                {"KernelSizeX", 15},
+                                {"KernelSizeY", 15},
+                                {"BorderType", 4}};
 
 
 
-
-    MultiImageFilter multiImageFilter{filterConfig7};
-    multiImageFilter.configure(filterConfig7);
+    MultiImageFilter multiImageFilter{filterConfig8};
+    multiImageFilter.configure(filterConfig8);
     cv::Mat image{cv::imread("1.png")};
     cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
 
@@ -61,7 +64,8 @@ int main() {
 
 
     multiImageFilter.process(image2);
-    cv::bilateralFilter(image, image3, 10, 150, 150,4);
+    //cv::bilateralFilter(image, image3, 10, 150, 150,4);
+    cv::blur(image, image3, cv::Size(15,15),cv::Point(-1,-1),4);
 
     cv::imshow("Before", image);
     cv::imshow("After", image2);

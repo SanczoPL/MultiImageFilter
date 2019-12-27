@@ -51,6 +51,8 @@ set(SRC
     src/filters/threshold.h
     src/filters/bilateralfilter.cc
     src/filters/bilateralfilter.h
+    src/filters/blur.cc
+    src/filters/blur.h
     ../../IncludeSpdlog/spdlog.cc
 )
 
