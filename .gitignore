@@ -70,3 +70,6 @@ build/CMakeFiles/3.16.1/CompilerIdCXX/CMakeCXXCompilerId.cpp
 build/CMakeFiles/MultiImageFilter.dir/home/user/genetic/repo/IncludeSpdlog/spdlog.cc.o
 build/CMakeFiles/MultiImageFilter_autogen.dir/AutogenInfo.json
 build/CMakeFiles/MultiImageFilter_autogen.dir/AutogenUsed.txt
+build/CMakeFiles/MultiImageFilter.dir/src/filters/bilateralfilter.cc.o
+build/CMakeFiles/MultiImageFilter.dir/src/filters/blur.cc.o
+build/CMakeFiles/MultiImageFilter.dir/src/filters/bilateralfilter.cc.o
