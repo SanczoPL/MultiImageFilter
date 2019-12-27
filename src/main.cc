@@ -1,4 +1,5 @@
 #include "../src/multiimagefilter.h"
+#include "../../../IncludeSpdlog/spdlog.h"
 #include <QDebug>
 #include <iostream>
 #include <QJsonArray>
@@ -8,6 +9,11 @@
 #include <opencv2/imgproc.hpp>
 
 int main() {
+
+  H_Logger->set_level(static_cast<spdlog::level::level_enum>(0));
+  H_Logger->set_pattern("[%Y-%m-%d] [%H:%M:%S.%e] [%t] [%^%l%$] %v");
+  H_Logger->debug("start main logger with LogLevel:{}", 0);
+
     QJsonObject filterConfig{{"Name", "GaussianBlur"},
                              {"KernelSizeX", 15},
                              {"KernelSizeY", 15},
@@ -32,13 +38,17 @@ int main() {
                                 {"MorphSize", 11},
                                 {"MorphElement", 0}};
 
-    QJsonObject filterConfig7{{"Name", "BilateraFilter"},
+    QJsonObject filterConfig7{{"Name", "BilateralFilter"},
                                 {"Diameter", 50},
                                 {"SigmaColor", 150},
                                 {"SigmaSpace", 150},
                                 {"BorderType", 4}};
 
+
+
+
     MultiImageFilter multiImageFilter{filterConfig7};
+    multiImageFilter.configure(filterConfig7);
     cv::Mat image{cv::imread("1.png")};
     cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
 
