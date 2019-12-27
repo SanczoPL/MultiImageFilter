@@ -53,6 +53,8 @@ set(SRC
     src/filters/bilateralfilter.h
     src/filters/blur.cc
     src/filters/blur.h
+    src/filters/sobel.cc
+    src/filters/sobel.h
     ../../IncludeSpdlog/spdlog.cc
 )
 

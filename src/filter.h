@@ -10,4 +10,5 @@
 #include "filters/threshold.h"
 #include "filters/bilateralfilter.h"
 #include "filters/blur.h"
+#include "filters/sobel.h"
 #endif // FILTER_H
