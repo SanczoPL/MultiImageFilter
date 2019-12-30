@@ -5,3 +5,6 @@ List of filter:
   * morphologyoperation cv::morphologyEx
   * resize              cv::resize
   * threshold           cv::threshold
+  * blur                cv::blur
+  * sobel               cv::sobel
+  * bilateraFiler       cv::bilateralFilter
