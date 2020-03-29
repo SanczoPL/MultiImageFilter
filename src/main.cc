@@ -53,39 +53,40 @@ int main() {
                                 {"KernelSize", 3},
                                 {"BorderType", 2}};
 
-    MultiImageFilter multiImageFilter{filterConfig9};
-    multiImageFilter.configure(filterConfig9);
+    MultiImageFilter multiImageFilter{filterConfig4};
+    multiImageFilter.configure(filterConfig4);
     cv::Mat image{cv::imread("1.png")};
-    cv::cvtColor(image, image, cv::COLOR_BGR2GRAY);
+    cv::Mat gray;
+    cv::cvtColor(image, gray, cv::COLOR_BGR2GRAY);
 
     cv::Mat image2{};
     cv::Mat image3{};
     //image.copyTo(image2);
     //image.copyTo(image3);
-    image2 = image.clone();
+    image2 = gray.clone();
     //image3 = image.clone();
 
 
-    multiImageFilter.process(image2);
+    multiImageFilter.process(gray);
     //cv::bilateralFilter(image, image3, 10, 150, 150,4);
     //cv::blur(image, image3, cv::Size(15,15),cv::Point(-1,-1),4);
     // sobel:
 
 
-    cv::Mat grad_x, grad_y;
-    cv::Mat abs_grad_x, abs_grad_y;
-    cv::Sobel(image, grad_x, -1, 1 , 0, 3, 1,0, 2);
-    cv::Sobel(image, grad_y, -1, 0 , 1, 3, 1,0, 2);
+    //cv::Mat grad_x, grad_y;
+    //::Mat abs_grad_x, abs_grad_y;
+    //cv::Sobel(image, grad_x, -1, 1 , 0, 3, 1,0, 2);
+    //cv::Sobel(image, grad_y, -1, 0 , 1, 3, 1,0, 2);
 
-    cv::convertScaleAbs(grad_x,abs_grad_x);
-    cv::convertScaleAbs(grad_y,abs_grad_y);
+    //cv::convertScaleAbs(grad_x,abs_grad_x);
+    //cv::convertScaleAbs(grad_y,abs_grad_y);
 
-    cv::addWeighted(abs_grad_x,0.5, abs_grad_y, 0.5, 0, image3);
+    //cv::addWeighted(abs_grad_x,0.5, abs_grad_y, 0.5, 0, image3);
   //  
 
     cv::imshow("Before", image);
-    cv::imshow("After", image2);
-    cv::imshow("bilateralFilter", image3);
+    cv::imshow("After", gray);
+
     cv::waitKey(0);
 
     return 0;

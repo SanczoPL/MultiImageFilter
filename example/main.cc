@@ -33,10 +33,11 @@ int main() {
 
 	QJsonArray filters{filterConfig, filterConfig2};
 
-  qDebug() << "filters" << filters;
-	MultiImageFilter multiImageFilter{filters};
+  qDebug() << "filterConfig4" << filterConfig4;
+	MultiImageFilter multiImageFilter{filterConfig4};
+	multiImageFilter.configure(filterConfig4);
 
-	cv::Mat image{cv::imread("example.jpeg")};
+	cv::Mat image{cv::imread("example.png")};
   cv::Mat image2{};
   image.copyTo(image2);
 
