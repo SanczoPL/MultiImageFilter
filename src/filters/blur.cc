@@ -14,5 +14,5 @@ Filter::Blur::Blur(QJsonObject const &a_config)
 
 void Filter::Blur::process(cv::Mat &a_src)
 {
-  cv::blur(a_src,a_src,cv::Size(m_kernelSizeX, m_kernelSizeY),cv::Point(-1,-1),m_borderType);
+  cv::blur(a_src, a_src, cv::Size(m_kernelSizeX, m_kernelSizeY), cv::Point(-1, -1), m_borderType);
 }

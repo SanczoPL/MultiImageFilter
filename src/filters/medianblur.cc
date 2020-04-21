@@ -10,5 +10,5 @@ Filter::MedianBlur::MedianBlur(QJsonObject const &a_config)
 
 void Filter::MedianBlur::process(cv::Mat &a_src)
 {
-  cv::medianBlur(a_src,a_src,m_kernelSize);
+  cv::medianBlur(a_src, a_src, m_kernelSize);
 }

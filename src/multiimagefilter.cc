@@ -23,7 +23,6 @@ void MultiImageFilter::configure(QJsonObject const &m_filter)
   auto const NAME_SID{ SID(NAME_STRING.c_str()) };
   delete m_baseFilter;
   m_timer.reset();
-  
 
   switch (NAME_SID)
   {

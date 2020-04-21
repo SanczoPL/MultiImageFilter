@@ -5,8 +5,10 @@
 
 class QJsonObject;
 
-namespace Filter {
-class MorphologyOperation : public BaseFilter {
+namespace Filter
+{
+class MorphologyOperation : public BaseFilter
+{
  public:
   MorphologyOperation(QJsonObject const &a_config);
 

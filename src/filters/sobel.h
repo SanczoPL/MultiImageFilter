@@ -5,10 +5,8 @@
 
 class QJsonObject;
 
-
-
 /* Paste in configuration:
-[{	
+[{
   "name": "Sobel_OrderDerivativeX",
   "min": 1,
   "max": 2
@@ -28,8 +26,10 @@ class QJsonObject;
 }],
 */
 
-namespace Filter {
-class Sobel : public BaseFilter {
+namespace Filter
+{
+class Sobel : public BaseFilter
+{
  public:
   Sobel(QJsonObject const &a_config);
 

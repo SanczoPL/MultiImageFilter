@@ -27,8 +27,10 @@
 
 class QJsonObject;
 
-namespace Filter {
-class BilateralFilter : public BaseFilter {
+namespace Filter
+{
+class BilateralFilter : public BaseFilter
+{
  public:
   BilateralFilter(QJsonObject const &a_config);
 
